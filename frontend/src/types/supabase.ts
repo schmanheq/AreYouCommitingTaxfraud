@@ -41,18 +41,27 @@ export type Database = {
     Tables: {
       Questions: {
         Row: {
+          answer_type: string
+          boss: boolean
           id: number
           Image_url: string | null
+          options: string[] | null
           Question: string
         }
         Insert: {
+          answer_type?: string
+          boss?: boolean
           id?: number
           Image_url?: string | null
+          options?: string[] | null
           Question: string
         }
         Update: {
+          answer_type?: string
+          boss?: boolean
           id?: number
           Image_url?: string | null
+          options?: string[] | null
           Question?: string
         }
         Relationships: []
