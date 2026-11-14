@@ -2,7 +2,7 @@ import { useState } from "react";
 
 interface SliderProps {
   options: string[];
-  onSubmit: (answer:number)=>number 
+  onSubmit: (answer:number)=>void 
 }
 
 export default function Slider({options, onSubmit}:SliderProps){
