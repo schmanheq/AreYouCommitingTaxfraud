@@ -2,7 +2,7 @@ import { useState } from "react";
 
 interface SliderProps {
   options: string[];
-  onSubmit: (answer:number)=>void 
+  onSubmit: (answer:number)=>number 
 }
 
 export default function Slider({options, onSubmit}:SliderProps){
@@ -18,6 +18,12 @@ export default function Slider({options, onSubmit}:SliderProps){
 
     return "Yea suuuuuuure there buddy"; 
     };
+
+    const handleSliderValue = (val:number) => {
+        if (val==0) return 0
+        if (val <= 1000) return 1;
+        return 5
+    }
 
  
 
@@ -85,7 +91,7 @@ export default function Slider({options, onSubmit}:SliderProps){
                     hover:rotate-0 hover:scale-105
                     active:translate-x-[6px] active:translate-y-[6px] active:shadow-none
                 "
-                onClick={()=>onSubmit(1)}
+                onClick={()=>onSubmit(handleSliderValue(Number(slidervalue)))}
                 >
                     {getCommentOnInput(Number(slidervalue))}
                 </button>

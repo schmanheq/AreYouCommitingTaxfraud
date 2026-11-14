@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react';
 import { supabase } from '../subapaseclient';
 import Slider from './Slider';
+import GameOver from './GameOver';
 import type { Database } from '../types/supabase';
 
 type Question = Database['public']['Tables']['Questions']['Row'];
 
 
 export default function Game(){
-
+    const [score, setScore]=useState(0)
     const [questions, setQuestions] = useState<Question[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
@@ -45,8 +46,10 @@ export default function Game(){
     if (loading) return <div>Loading game...</div>;
     if (error) return <div>Error loading questions: {error}</div>;
 
-    const handleSubmit = () => {
+    const handleSubmit = (question_score:number) => {
         setCurrentIndex((prevIndex)=>(prevIndex+1))
+        setScore((prev)=>(prev+question_score))
+        console.log(score)
     };
     return (
         
@@ -78,7 +81,10 @@ export default function Game(){
                             hover:bg-green-300 hover:-translate-y-1 hover:shadow-[8px_8px_0px_#000] 
                             active:translate-x-[6px] active:translate-y-[6px] active:shadow-none
                         `}
-                        onClick={() => { setCurrentIndex((prevIndex) => (prevIndex + 1)) }}
+                        onClick={() => {
+                          if(index==0){handleSubmit(1)}
+                          else {handleSubmit(0)}
+                        }}
                         >
                         {option}
                         </button>
@@ -98,9 +104,9 @@ export default function Game(){
             </div>}
 
             {currentIndex==questions.length &&
-            <div>
-                <h1>Game Over</h1>
-            </div>
+            <GameOver
+            score={score}
+            /> 
             }
         </div>
     
