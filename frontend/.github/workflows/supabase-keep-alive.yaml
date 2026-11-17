@@ -2,9 +2,8 @@ name: Keep Supabase Alive
 
 on:
   schedule:
-    # Runs at 00:00 UTC every 3 days
     - cron: '0 0 */3 * *'
-  workflow_dispatch: # Allows you to manually trigger a test run from the GitHub UI
+  workflow_dispatch:
 
 jobs:
   ping:
