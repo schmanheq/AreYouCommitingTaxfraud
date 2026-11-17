@@ -1,8 +1,7 @@
 // keep-alive.js
 const SUPABASE_URL = process.env.SUPABASE_URL;
 const SUPABASE_ANON_KEY = process.env.SUPABASE_ANON_KEY;
-// Replace 'your_table_name' with any actual table in your database (even an empty one)
-const TABLE_NAME = 'your_table_name'; 
+const TABLE_NAME = 'Questions'; 
 
 async function pingSupabase() {
   if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
